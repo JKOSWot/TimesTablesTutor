@@ -1,0 +1,103 @@
+package mathsGUI;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+@SuppressWarnings("serial")
+public class TimesTablesTutorResults extends JFrame {
+	private static int correctCount;
+	private static int incorrectCount;
+	private JPanel titlePanel;
+	private JPanel correctPanel;
+	private JPanel incorrectPanel;
+	private JLabel titleLabel;
+	private JLabel correctLabel;
+	private JLabel incorrectLabel;
+	private GridBagLayout Layout = new GridBagLayout();
+
+
+	public TimesTablesTutorResults(int correctCount, int incorrectCount) {
+		correctLabel = new JLabel("You got " + correctCount + " correct!", SwingConstants.CENTER);
+		incorrectLabel = new JLabel("You got " + incorrectCount + " incorrect!");
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				prepareGUI();
+			}
+		});
+	}
+
+	public void prepareGUI() {
+		setSize(700, 400);
+		setTitle("Times Tables Tutor");
+		setResizable(false);
+		setLocationRelativeTo(null);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent windowEvent) {
+				System.exit(0);
+			}
+		});
+
+		setupTitle();
+		setupCorrect();
+		setupIncorrect();
+
+		setVisible(true);
+	}
+
+	public void setupTitle() {
+		titlePanel = new JPanel();
+		titleLabel = new JLabel();
+
+		titleLabel.setText("Your results");
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+
+		titlePanel.setLayout(Layout);
+		titlePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		titlePanel.setPreferredSize(new Dimension(700, 150));
+		titlePanel.add(titleLabel);
+		titlePanel.setBackground(new Color(63, 242, 255));
+		add(titlePanel, BorderLayout.NORTH);
+	}
+
+	public void setupCorrect() {
+		correctPanel = new JPanel();
+
+		correctLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+
+		correctPanel.setLayout(Layout);
+		correctPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		correctPanel.setPreferredSize(new Dimension(350, 250));
+		correctPanel.setBackground(new Color(70, 249, 67));
+		correctPanel.add(correctLabel);
+		add(correctPanel, BorderLayout.WEST);
+	}
+
+	public void setupIncorrect() {
+		incorrectPanel = new JPanel();
+
+		incorrectLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+
+		incorrectPanel.setLayout(Layout);
+		incorrectPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		incorrectPanel.setPreferredSize(new Dimension(350, 250));
+		incorrectPanel.setBackground(new Color(255, 63, 79));
+		incorrectPanel.add(incorrectLabel);
+		add(incorrectPanel, BorderLayout.EAST);
+	}
+
+	public static void main(String[] args) {
+		new TimesTablesTutorResults(correctCount, incorrectCount);
+	}
+
+}
