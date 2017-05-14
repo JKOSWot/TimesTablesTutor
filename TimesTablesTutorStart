@@ -1,0 +1,67 @@
+package mathsGUI;
+
+import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+
+@SuppressWarnings("serial")
+public class TimesTablesTutorStart extends JFrame
+{
+	private static JButton playButton = new JButton();
+	private static JLabel background = new JLabel();
+	private static JLayeredPane pane = new JLayeredPane();
+
+	public TimesTablesTutorStart() {
+		new TimesTablesTutorStart();
+	}
+
+	public void prepareGUI()
+	{
+		setSize(700, 400);
+		setTitle("Times Tables Tutor");
+		setResizable(false);
+		setLocationRelativeTo(null);
+
+		addWindowListener((WindowListener) new TimesTablesTutorStart());
+
+
+		layeredPaneSetup();
+		labelSetup();
+		buttonSetup();
+
+		setVisible(true);
+	}
+
+	public void layeredPaneSetup() {
+		add(pane);
+		pane.add(background, new Integer(1));
+		pane.add(playButton, new Integer(2));
+	}
+
+	public void labelSetup() {
+		ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("/images/background.png"));
+		ImageIcon resizedBackgroundIcon = new ImageIcon(backgroundIcon.getImage().getScaledInstance(700, 400, 4));
+		background.setIcon(resizedBackgroundIcon);
+		background.setSize(700, 400);
+	}
+
+	public void buttonSetup() {
+		ImageIcon playIcon = new ImageIcon(getClass().getResource("/images/Play_Button.png"));
+		ImageIcon playResizedIcon = new ImageIcon(playIcon.getImage().getScaledInstance(100, 70, 4));
+		playButton.setIcon(playResizedIcon);
+		playButton.setBounds(400, 100, 100, 70);
+		playButton.setBorder(null);
+
+		playButton.addActionListener((ActionListener) new TimesTablesTutorTest());
+	}
+
+	public static void main(String[] args)
+	{
+		new TimesTablesTutorStart();
+	}
+}
