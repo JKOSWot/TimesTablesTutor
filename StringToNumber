@@ -1,0 +1,25 @@
+package model;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class StringToNumber {
+	
+	public static int convert(String str) {
+		Map<String, Integer> convertMap = new HashMap<String, Integer>();
+
+		convertMap.put("zero", 0);
+		convertMap.put("one", 1);
+		convertMap.put("two", 2);
+		convertMap.put("three", 3);
+		convertMap.put("four", 4);
+		convertMap.put("five", 5);
+		convertMap.put("six", 6);
+		convertMap.put("seven", 7);
+		convertMap.put("eight", 8);
+		convertMap.put("nine", 9);
+		convertMap.put("ten", 10);
+		
+		return convertMap.get(str);
+	}
+}
